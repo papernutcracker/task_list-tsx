@@ -43,4 +43,3 @@ export function Counter({ total, completed }: CounterProps) {
     </section>
   );
 }
-
