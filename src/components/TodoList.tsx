@@ -1,18 +1,25 @@
 // src/components/TodoList.tsx
 import type { Task } from "../types";
 import { TodoItem } from "./TodoItem";
+import styles from "./TodoList.module.css";
 
 interface TodoListProps {
   tasks: Task[];
+  onToggleTask: (id: Task["id"]) => void;
+  onDeleteTask: (id: Task["id"]) => void;
 }
 
-export function TodoList({ tasks }: TodoListProps) {
+export function TodoList({
+  tasks,
+  onToggleTask,
+  onDeleteTask,
+}: TodoListProps) {
   if (tasks.length === 0) {
     return (
-      <div className="todo-list-empty">
-        <div className="todo-list-empty__icon">✨</div>
-        <h3 className="todo-list-empty__title">Список завдань порожній</h3>
-        <p className="todo-list-empty__subtitle">
+      <div className={styles.empty}>
+        <div className={styles.emptyIcon}>✨</div>
+        <h3 className={styles.emptyTitle}>Список завдань порожній</h3>
+        <p className={styles.emptySubtitle}>
           Додайте нове завдання вище, щоб розпочати свій продуктивний день!
         </p>
       </div>
@@ -20,11 +27,15 @@ export function TodoList({ tasks }: TodoListProps) {
   }
 
   return (
-    <ul className="todo-list">
+    <ul className={styles.list}>
       {tasks.map((task) => (
-        <TodoItem key={task.id} task={task} />
+        <TodoItem
+          key={task.id}
+          task={task}
+          onToggle={onToggleTask}
+          onDelete={onDeleteTask}
+        />
       ))}
     </ul>
   );
 }
-

@@ -1,61 +1,54 @@
 // src/components/TaskForm.tsx
 import { useState, useRef, useEffect, type FormEvent } from "react";
 import type { Priority } from "../types";
+import styles from "./TaskForm.module.css";
 
 interface TaskFormProps {
   onAddTask: (task: { text: string; priority: Priority; date: string }) => void;
 }
 
 export function TaskForm({ onAddTask }: TaskFormProps) {
-  // 1. Локальний стан для кожного контрольованого поля форми
   const [text, setText] = useState<string>("");
   const [priority, setPriority] = useState<Priority>("normal");
   const [date, setDate] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
 
-  // 2. Реф для автофокусу на полі введення
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // 3. Автофокус при першому монтуванні форми
   useEffect(() => {
     inputRef.current?.focus();
   }, []);
 
-  // 4. Обробник відправки форми
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
 
-    // Валідація довжини
     if (text.trim().length < 3) {
       setError("Текст завдання має містити щонайменше 3 символи!");
       inputRef.current?.focus();
       return;
     }
 
-    // Передаємо дані в App через колбек
     onAddTask({
       text: text.trim(),
       priority,
       date,
     });
 
-    // Очищаємо форму після додавання
     setText("");
     setPriority("normal");
     setDate("");
     setError(null);
 
-    // Повертаємо курсор користувача в інпут для швидкого додавання наступної задачі
     inputRef.current?.focus();
   };
 
   return (
-    <form className="task-form" onSubmit={handleSubmit}>
-      <div className="task-form__input-group">
+    <form className={styles.form} onSubmit={handleSubmit}>
+      <div className={styles.inputGroup}>
         <input
           ref={inputRef}
           type="text"
-          className="task-form__input"
+          className={styles.input}
           placeholder="Що потрібно зробити?"
           value={text}
           onChange={(e) => {
@@ -64,28 +57,17 @@ export function TaskForm({ onAddTask }: TaskFormProps) {
           }}
           autoComplete="off"
         />
-        {error && (
-          <span
-            style={{
-              color: "#ef4444",
-              fontSize: "0.8rem",
-              marginTop: "4px",
-              display: "block",
-            }}
-          >
-            ⚠️ {error}
-          </span>
-        )}
+        {error && <span className={styles.error}>⚠️ {error}</span>}
       </div>
 
-      <div className="task-form__controls">
-        <div className="task-form__group">
-          <label className="task-form__label" htmlFor="priority-select">
+      <div className={styles.controls}>
+        <div className={styles.group}>
+          <label className={styles.label} htmlFor="priority-select">
             Пріоритет:
           </label>
           <select
             id="priority-select"
-            className="task-form__select"
+            className={styles.select}
             value={priority}
             onChange={(e) => setPriority(e.target.value as Priority)}
           >
@@ -95,14 +77,14 @@ export function TaskForm({ onAddTask }: TaskFormProps) {
           </select>
         </div>
 
-        <div className="task-form__group">
-          <label className="task-form__label" htmlFor="deadline-input">
+        <div className={styles.group}>
+          <label className={styles.label} htmlFor="deadline-input">
             Дедлайн:
           </label>
           <input
             id="deadline-input"
             type="date"
-            className="task-form__date"
+            className={styles.date}
             value={date}
             onChange={(e) => setDate(e.target.value)}
           />
@@ -110,10 +92,10 @@ export function TaskForm({ onAddTask }: TaskFormProps) {
 
         <button
           type="submit"
-          className="task-form__submit-btn"
+          className={styles.submitBtn}
           disabled={text.trim().length === 0}
         >
-          <span className="task-form__btn-icon">＋</span>
+          <span className={styles.btnIcon}>＋</span>
           <span>Додати</span>
         </button>
       </div>

@@ -1,0 +1,144 @@
+.item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.05);
+  border: 1px solid var(--border-light);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+  list-style: none;
+}
+
+.item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
+}
+
+.low {
+  border-left: 5px solid var(--priority-low);
+}
+
+.normal {
+  border-left: 5px solid var(--priority-normal);
+}
+
+.high {
+  border-left: 5px solid var(--priority-high);
+}
+
+.completed {
+  opacity: 0.65;
+  background-color: #f8fafc;
+}
+
+.completed .text {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
+.overdue {
+  box-shadow: 0 0 0 2px #ef4444, 0 4px 12px rgba(239, 68, 68, 0.15);
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-top: 3px;
+}
+
+.checkbox {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: var(--primary-color);
+  border-radius: 6px;
+}
+
+.content {
+  flex: 1;
+  min-width: 0;
+}
+
+.text {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #1e293b;
+  margin-bottom: 6px;
+  word-break: break-word;
+  line-height: 1.4;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  text-transform: capitalize;
+}
+
+.badgeLow {
+  background-color: #ecfdf5;
+  color: #065f46;
+}
+
+.badgeNormal {
+  background-color: #fffbeb;
+  color: #92400e;
+}
+
+.badgeHigh {
+  background-color: #fef2f2;
+  color: #991b1b;
+}
+
+.date {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.dateOverdue {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+.overdueAlert {
+  background-color: #fee2e2;
+  color: #b91c1c;
+  padding: 1px 6px;
+  border-radius: 4px;
+  margin-left: 4px;
+}
+
+.deleteBtn {
+  background: transparent;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 8px;
+  color: #94a3b8;
+  transition: background-color 0.15s ease, transform 0.15s ease;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.deleteBtn:hover {
+  background-color: #fee2e2;
+  transform: scale(1.1);
+}

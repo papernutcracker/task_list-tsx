@@ -1,4 +1,5 @@
 // src/components/Header.tsx
+import styles from "./Header.module.css";
 
 interface HeaderProps {
   title?: string;
@@ -10,12 +11,12 @@ export function Header({
   subtitle = "Організуй свої щоденні справи та завдання",
 }: HeaderProps) {
   return (
-    <header className="app-header">
-      <div className="app-header__icon-wrapper">
-        <span className="app-header__icon">📋</span>
+    <header className={styles.header}>
+      <div className={styles.iconWrapper}>
+        <span className={styles.icon}>📋</span>
       </div>
-      <h1 className="app-header__title">{title}</h1>
-      <p className="app-header__subtitle">{subtitle}</p>
+      <h1 className={styles.title}>{title}</h1>
+      <p className={styles.subtitle}>{subtitle}</p>
     </header>
   );
 }

@@ -1,4 +1,5 @@
 // src/components/Counter.tsx
+import styles from "./Counter.module.css";
 
 interface CounterProps {
   total: number;
@@ -10,32 +11,32 @@ export function Counter({ total, completed }: CounterProps) {
   const percentage = total > 0 ? Math.round((completed / total) * 100) : 0;
 
   return (
-    <section className="counter" aria-label="Статистика завдань">
-      <div className="counter__grid">
-        <div className="counter__card counter__card--total">
-          <span className="counter__label">Всього</span>
-          <span className="counter__value">{total}</span>
+    <section className={styles.counter} aria-label="Статистика завдань">
+      <div className={styles.grid}>
+        <div className={`${styles.card} ${styles.total}`}>
+          <span className={styles.label}>Всього</span>
+          <span className={styles.value}>{total}</span>
         </div>
 
-        <div className="counter__card counter__card--active">
-          <span className="counter__label">В процесі</span>
-          <span className="counter__value">{active}</span>
+        <div className={`${styles.card} ${styles.active}`}>
+          <span className={styles.label}>В процесі</span>
+          <span className={styles.value}>{active}</span>
         </div>
 
-        <div className="counter__card counter__card--completed">
-          <span className="counter__label">Виконано</span>
-          <span className="counter__value">{completed}</span>
+        <div className={`${styles.card} ${styles.completed}`}>
+          <span className={styles.label}>Виконано</span>
+          <span className={styles.value}>{completed}</span>
         </div>
       </div>
 
-      <div className="counter__progress">
-        <div className="counter__progress-info">
-          <span className="counter__progress-label">Прогрес виконання</span>
-          <span className="counter__progress-value">{percentage}%</span>
+      <div className={styles.progress}>
+        <div className={styles.progressInfo}>
+          <span className={styles.progressLabel}>Прогрес виконання</span>
+          <span className={styles.progressValue}>{percentage}%</span>
         </div>
-        <div className="counter__progress-bar">
+        <div className={styles.progressBar}>
           <div
-            className="counter__progress-fill"
+            className={styles.progressFill}
             style={{ width: `${percentage}%` }}
           />
         </div>
