@@ -1,9 +1,8 @@
-// src/types/index.ts
 
-// Можливі рівні пріоритету завдання
 export type Priority = "low" | "normal" | "high";
 
-// Інтерфейс окремого завдання
+export type FilterStatus = "all" | "active" | "completed";
+
 export interface Task {
   id: number | string;
   text: string;
